@@ -27,7 +27,7 @@ const authConfig = {
 
                     const { user, error, message } = data
 
-                    return user
+                    return {...user, name: user.username}
                 } catch(error) {
                     console.log(error)
                     return null
@@ -45,7 +45,7 @@ const authConfig = {
             return token
         },
         async session({ session, token }: any) {
-            session.user = token.user
+            session.user = token
             session.expires_in = token.expires_in
             session.accessToken = token.accessToken
             return session
